@@ -24,6 +24,4 @@ public class ApiController {
                 .map(ExchangeRateDTO::new)
                 .collect(Collectors.toList()));
     }
-
-
 }
