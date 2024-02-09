@@ -31,7 +31,7 @@ public class ExchangeRateService {
                    }
                }
            }
-           return Arrays.asList(Objects.requireNonNull(rates));
+           return Arrays.asList(rates);
        }
    }
 
@@ -61,5 +61,4 @@ public class ExchangeRateService {
             throw new NoSuchElementException("No exchange rate found with short name: " + shortName);
         }
     }
-
 }

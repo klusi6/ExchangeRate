@@ -31,6 +31,4 @@ public class MainController {
        model.addAttribute("rate", new ExchangeRateDTO(exchangeRateService.getExchangeRateByShortName(shortName, useDb)));
         return "detail";
     }
-
-
 }
