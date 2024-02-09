@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.vaclavklusacek.exchangerate.dto.ExchangeRateDTO;
+import org.vaclavklusacek.exchangerate.model.ExchangeRate;
 import org.vaclavklusacek.exchangerate.service.ExchangeRateService;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
@@ -18,10 +20,17 @@ public class ApiController {
 
     private final ExchangeRateService exchangeRateService;
 
-    @GetMapping("")
+    @GetMapping("/rates")
     public ResponseEntity<?> getExchangeRates(@RequestParam(name = "usedb") boolean useDb){
-        return ResponseEntity.ok(exchangeRateService.getExchangeRates(useDb).stream()
-                .map(ExchangeRateDTO::new)
-                .collect(Collectors.toList()));
+        List<ExchangeRate> rates = exchangeRateService.getRates(useDb);
+        if (!rates.isEmpty()) {
+            return ResponseEntity.ok(exchangeRateService.getRates(useDb).stream()
+                    .map(ExchangeRateDTO::new)
+                    .collect(Collectors.toList()));
+        } else {
+            //in case of empty DB, return little help note
+            return ResponseEntity.ok("no content, load first with /api/rates/?usedb=false");
+        }
+
     }
 }

@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.vaclavklusacek.exchangerate.dto.ExchangeRateDTO;
+import org.vaclavklusacek.exchangerate.model.ExchangeRate;
 import org.vaclavklusacek.exchangerate.service.ExchangeRateService;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -18,18 +20,29 @@ public class ControllerForBank {
     private final ExchangeRateService exchangeRateService;
 
     @RequestMapping("/rates")
-    public String getExchangeRates(Model model){
-        model.addAttribute("rates", exchangeRateService.getRatesFromApi()
-        .stream()
-                .map(ExchangeRateDTO::new)
-                .collect(Collectors.toList()));
+    public String getExchangeRates(Model model) {
+        List<ExchangeRate> rates = exchangeRateService.getOutsideRates();
+        if (!rates.isEmpty()) {
+            model.addAttribute("rates", rates.stream()
+                    .map(ExchangeRateDTO::new)
+                    .collect(Collectors.toList()));
+        } else {
+            model.addAttribute("message", "No exchange rates found");
+        }
         return "index";
     }
 
-    @RequestMapping("/detail/{shortName}")
-    public String getExchangeRateDetail(Model model, @PathVariable String shortName){
-        model.addAttribute("rate", new ExchangeRateDTO(exchangeRateService.getDetailRateFromApiByShortName(shortName)));
-        return "detail";
+    @RequestMapping("/rates/{shortName}")
+    public String getExchangeRateDetail(Model model, @PathVariable String shortName) {
+        ExchangeRate rate = exchangeRateService.getOutsideDetail(shortName);
+        if (rate!=null){
+            model.addAttribute("rate", new ExchangeRateDTO(rate));
+            return "detail";
+
+        } else {
+            model.addAttribute("message", "No exchange rate found");
+            return "error";
+        }
     }
 
 }
