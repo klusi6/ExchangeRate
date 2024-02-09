@@ -1,8 +1,9 @@
-package org.vaclavklusacek.exchangerate.contollers;
+package org.vaclavklusacek.exchangerate.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.vaclavklusacek.exchangerate.dto.ExchangeRateDTO;
@@ -19,7 +20,7 @@ public class ControllerForBank {
 
     private final ExchangeRateService exchangeRateService;
 
-    @RequestMapping("/rates")
+    @GetMapping("/rates")
     public String getExchangeRates(Model model) {
         List<ExchangeRate> rates = exchangeRateService.getOutsideRates();
         if (!rates.isEmpty()) {
@@ -32,7 +33,7 @@ public class ControllerForBank {
         return "indexBank";
     }
 
-    @RequestMapping("/rates/{shortName}")
+    @GetMapping("/rates/{shortName}")
     public String getExchangeRateDetail(Model model, @PathVariable String shortName) {
         ExchangeRate rate = exchangeRateService.getOutsideDetail(shortName);
         if (rate != null) {

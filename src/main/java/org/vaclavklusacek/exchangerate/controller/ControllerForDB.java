@@ -1,4 +1,4 @@
-package org.vaclavklusacek.exchangerate.contollers;
+package org.vaclavklusacek.exchangerate.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,6 @@ import org.vaclavklusacek.exchangerate.dto.ExchangeRateDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Controller
 @RequestMapping("/db")
@@ -35,7 +34,7 @@ public class ControllerForDB {
         }
     }
 
-    @RequestMapping("/rates/{shortName}")
+    @GetMapping("/rates/{shortName}")
     public String getExchangeRateDetail(Model model, @PathVariable String shortName) {
         ExchangeRate rate = exchangeRateService.getLocalDetailByShortName(shortName);
         if (rate != null) {

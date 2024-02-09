@@ -1,4 +1,4 @@
-package org.vaclavklusacek.exchangerate.contollers;
+package org.vaclavklusacek.exchangerate.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +25,7 @@ public class ApiController {
     public ResponseEntity<?> getExchangeRates(@RequestParam(name = "usedb") boolean useDb) {
         List<ExchangeRate> rates = exchangeRateService.getRates(useDb);
         if (!rates.isEmpty()) {
-            return ResponseEntity.ok(exchangeRateService.getRates(useDb).stream()
+            return ResponseEntity.ok(rates.stream()
                     .map(ExchangeRateDTO::new)
                     .collect(Collectors.toList()));
         } else {
