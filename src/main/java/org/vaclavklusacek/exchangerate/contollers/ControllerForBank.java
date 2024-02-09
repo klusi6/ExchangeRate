@@ -29,13 +29,13 @@ public class ControllerForBank {
         } else {
             model.addAttribute("message", "No exchange rates found");
         }
-        return "index";
+        return "indexBank";
     }
 
     @RequestMapping("/rates/{shortName}")
     public String getExchangeRateDetail(Model model, @PathVariable String shortName) {
         ExchangeRate rate = exchangeRateService.getOutsideDetail(shortName);
-        if (rate!=null){
+        if (rate != null) {
             model.addAttribute("rate", new ExchangeRateDTO(rate));
             return "detail";
 
@@ -44,5 +44,4 @@ public class ControllerForBank {
             return "error";
         }
     }
-
 }

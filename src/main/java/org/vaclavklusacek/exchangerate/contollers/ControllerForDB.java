@@ -28,7 +28,7 @@ public class ControllerForDB {
             model.addAttribute("rates", rates.stream()
                     .map(ExchangeRateDTO::new)
                     .collect(Collectors.toList()));
-            return "index";
+            return "indexDb";
         } else {
             model.addAttribute("message", "No exchange rates found, load first");
             return "error";

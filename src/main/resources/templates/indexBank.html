@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<table>
+    <h1>Outside Exchange Rates</h1>
+    <tr>
+        <th>Name</th>
+        <th>Country</th>
+    </tr>
+    <tr th:each="rate : ${rates}">
+        <td>
+            <a th:href="@{/bank/rates/{shortName}(shortName=${rate.shortName})}" th:text="${rate.shortName}"></a>
+        </td>
+        <td th:text="${rate.country}"></td>
+    </tr>
+</table>
+</body>
+</html>

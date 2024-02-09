@@ -22,7 +22,7 @@ public record ExchangeRateDTO(
         BigDecimal cnbMid,
         BigDecimal ecbMid
 ) {
-    public ExchangeRateDTO(ExchangeRate exchangeRate){
+    public ExchangeRateDTO(ExchangeRate exchangeRate) {
         this(
                 exchangeRate.getShortName(),
                 exchangeRate.getValidFrom(),

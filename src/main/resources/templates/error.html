@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        p,h1 {
-            text-align: center;
-            color: #FF0000FF;
-        }
-    </style>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<h1 th:text="${message}"></h1>
-<p> try to click <a href="/api/rates?usedb=false">here</a> for load db, or you have typo in param</p>
+<div>
+    <h1 th:text="${message}"></h1>
+    <p> try to click <a href="/api/rates?usedb=false">here</a> for load db, or you have typo in path</p>
+</div>
 </body>
 </html>
