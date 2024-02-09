@@ -1,5 +1,7 @@
 package org.vaclavklusacek.exchangerate.dto;
 
+import org.vaclavklusacek.exchangerate.model.ExchangeRate;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -19,5 +21,24 @@ public record ExchangeRateDTO(
         Integer version,
         BigDecimal cnbMid,
         BigDecimal ecbMid
-) {}
+) {
+    public ExchangeRateDTO(ExchangeRate exchangeRate){
+        this(
+                exchangeRate.getShortName(),
+                exchangeRate.getValidFrom(),
+                exchangeRate.getName(),
+                exchangeRate.getCountry(),
+                exchangeRate.getMove(),
+                exchangeRate.getAmount(),
+                exchangeRate.getValBuy(),
+                exchangeRate.getValSell(),
+                exchangeRate.getValMid(),
+                exchangeRate.getCurrBuy(),
+                exchangeRate.getCurrSell(),
+                exchangeRate.getCurrMid(),
+                exchangeRate.getVersion(),
+                exchangeRate.getCnbMid(),
+                exchangeRate.getEcbMid());
+    }
+}
 

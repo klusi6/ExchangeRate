@@ -13,10 +13,8 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 public class ExchangeRate {
-    @Id
-    @GeneratedValue
-    private Long id;
 
+    @Id
     private String shortName;
 
     private LocalDateTime validFrom;

@@ -9,4 +9,5 @@ import org.vaclavklusacek.exchangerate.service.ExchangeRateService;
 public class MainController {
 
     private final ExchangeRateService exchangeRateService;
+
 }
