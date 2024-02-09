@@ -16,6 +16,22 @@ public class ExchangeRateService {
 
    private final String apiUrl = "https://webapi.developers.erstegroup.com/api/csas/public/sandbox/v2/rates/exchangerates?web-api-key=c52a0682-4806-4903-828f-6cc66508329e";
 
+   public List<ExchangeRate> getRatesFromApi() {
+       RestTemplate restTemplate = new RestTemplate();
+       ExchangeRate[] rates = restTemplate.getForObject(apiUrl, ExchangeRate[].class);
+       assert rates != null;
+       return Arrays.asList(rates);
+   }
+
+   public ExchangeRate getDetailRateFromApiByShortName(String shortName) {
+       RestTemplate restTemplate = new RestTemplate();
+       ExchangeRate[] rates = restTemplate.getForObject(apiUrl, ExchangeRate[].class);
+       assert rates != null;
+       Optional<ExchangeRate> rateOptional = Arrays.stream(rates)
+               .filter(rate -> rate.getShortName().equals(shortName))
+               .findFirst();
+       return rateOptional.orElse(null);
+   }
    public List<ExchangeRate> getExchangeRates(boolean useDb) {
        if (useDb) {
            return exchangeRateRepository.findAll();

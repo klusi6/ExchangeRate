@@ -17,11 +17,8 @@ public class ExchangeRate {
 
     @Id
     private String shortName;
-
     private LocalDateTime validFrom;
-
     private String name;
-
     private String country;
     @Column(precision=10, scale=3)
     private BigDecimal move;

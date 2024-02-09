@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Exchange Rates</title>
     <style>
         table {
             border-collapse: collapse;
@@ -23,31 +23,44 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-
     </style>
 </head>
 <body>
 <table>
     <tr>
+        <th>Short Name</th>
+        <th>Valid From</th>
         <th>Name</th>
         <th>Country</th>
-        <th>Valid From</th>
+        <th>Move</th>
         <th>Amount</th>
         <th>Buy Value</th>
         <th>Sell Value</th>
         <th>Mid Value</th>
+        <th>Current Buy</th>
+        <th>Current Sell</th>
+        <th>Current Mid</th>
+        <th>Version</th>
         <th>CNB Mid</th>
         <th>ECB Mid</th>
     </tr>
+    <tr>
+        <td th:text="${rate.shortName}"></td>
+        <td th:text="${rate.validFrom}"></td>
         <td th:text="${rate.name}"></td>
         <td th:text="${rate.country}"></td>
-        <td th:text="${rate.validFrom}"></td>
+        <td th:text="${rate.move}"></td>
         <td th:text="${rate.amount}"></td>
         <td th:text="${rate.valBuy}"></td>
         <td th:text="${rate.valSell}"></td>
         <td th:text="${rate.valMid}"></td>
+        <td th:text="${rate.currBuy}"></td>
+        <td th:text="${rate.currSell}"></td>
+        <td th:text="${rate.currMid}"></td>
+        <td th:text="${rate.version}"></td>
         <td th:text="${rate.cnbMid}"></td>
         <td th:text="${rate.ecbMid}"></td>
+    </tr>
 </table>
 
 </body>
